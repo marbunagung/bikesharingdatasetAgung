@@ -18,9 +18,6 @@ def create_daily_df(df):
     
     return daily_df
 
-def create_sum_items_df(df):
-    sum_items_df = hour_df.groupby("casual").sum()
-    return sum_items_df
 
 def create_bytemp_df(df):
     bytemp_df = hour_df.groupby(by="temp").instant.nunique().reset_index()
@@ -73,7 +70,6 @@ main_df = hour_df[(hour_df["date"] >= str(start_date)) &
                 (hour_df["date"] <= str(end_date))]
 
 daily_df = create_daily_df(main_df)
-sum_items_df = create_sum_items_df(main_df)
 bytemp_df = create_bytemp_df(main_df)
 byweather_df = create_byweather_df(main_df)
 rfm_df = create_rfm_df(main_df)
